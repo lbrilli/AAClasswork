@@ -12,9 +12,9 @@ class Employee
     def bonus(multiplier)
         total_salary = 0
 
-        # @employees.each do |employee|
-        #     total_salary += employee.salary 
-        # end
+        @employees.each do |employee|
+            total_salary += employee.salary 
+        end
 
         if self.title == 'manager'
             bonus = total_salary * multiplier
@@ -24,4 +24,10 @@ class Employee
 
         bonus
     end
+
+    #define a setter
+    #have the setter take in an array of employees
+    #pass that array to the manager class -- adjust manager class to accept the array
+    #assign the manager object to the employee
+
 end
