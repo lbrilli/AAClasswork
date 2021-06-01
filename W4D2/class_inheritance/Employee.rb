@@ -1,6 +1,6 @@
 class Employee
 
-    attr_reader: :name, :title, :salary :boss
+    attr_reader :name, :title, :salary, :boss
 
     def initialize(name, title, salary, boss)
         @name = name
@@ -12,14 +12,14 @@ class Employee
     def bonus(multiplier)
         total_salary = 0
 
-        @employees.each do |employee|
-            total_salary += employee.salary 
-        end
+        # @employees.each do |employee|
+        #     total_salary += employee.salary 
+        # end
 
-        if employee.title != manager
-            bonus = @salary * multiplier
-        else
+        if self.title == 'manager'
             bonus = total_salary * multiplier
+        else
+            bonus = @salary * multiplier
         end
 
         bonus
