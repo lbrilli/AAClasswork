@@ -16,7 +16,7 @@ class Employee
             total_salary += employee.salary 
         end
 
-        if self.title == 'manager'
+        if self.is_a?(Manager) 
             bonus = total_salary * multiplier
         else
             bonus = @salary * multiplier
