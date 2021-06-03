@@ -39,17 +39,35 @@ end
 
 describe "#my_transpose" do
     subject(:arr) {[
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8]
-  ]}
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8]
+        ]}
     context "will convert row-oriented array to column-oriented array" do
 
         it "will return a new 2D array" do 
             expect(arr.my_transpose).to_not eq(arr)
         end
 
-        it "will return "
+        it "will return rows and columns switched" do
+            expect(arr.my_transpose).to eq(cols = [
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8]
+            ])
+        end
+    end
+end
 
+describe "#stock_picker" do
+    subject(:arr) { [500, 100, 200, 600, 300, 400, 700] }
+    context "will return the days (indices) that would yield the most profit"
+    
+    it "will return a one pair of days" do
+        expect(arr.stock_picker).to eq([1,6])
+    end
+
+    it "will return a new array" do
+        expect(arr.stock_picker).to_not eq(arr)
     end
 end
