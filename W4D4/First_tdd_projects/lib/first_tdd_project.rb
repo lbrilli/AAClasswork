@@ -32,5 +32,18 @@ class Array
         final
     end
 
+    def stock_picker
+        final = []
+        diff = 0
+        self.each_with_index do |el1, idx1|
+            self.each_with_index do |el2, idx2|
+                if el2 - el1 > diff && idx2 > idx1
+                    final = [idx1,idx2]
+                    diff = el2 - el1
+                end
+            end
+        end
+        final
+    end
 end
 

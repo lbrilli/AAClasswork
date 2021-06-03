@@ -71,3 +71,4 @@ describe "#stock_picker" do
         expect(arr.stock_picker).to_not eq(arr)
     end
 end
+
