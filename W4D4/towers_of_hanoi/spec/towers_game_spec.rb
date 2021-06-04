@@ -2,38 +2,46 @@ require 'rspec'
 require 'towers_game'
 
 describe "#move" do
-    subject(:arr) { [
+    subject(:game) { Game.new }
+
+    let(:arr) { [
     [1,2,3,4],
     [],
     [] 
     ] }
+
     context "moves one block(number) into another array"
 
-    it "should take in two parameters" do
-        expect{ arr.move }.to raise_error("invalid arguement, requires two parameters")
+    it "should call Array#shift" do
+        expect(arr.move).to receive(:shift).at_least(:once)
+        arr[0].shift
     end
 
-    it "should grab a block" do
-        arr2 = [
-        [2,3,4],
-        [],
-        [] 
-        ]
-        expect(arr.move(0,2)).to eq(arr2)
+    it "should call Array#unshift" do
+        expect(arr.move).to receive(:unshift).at_least(:once)
+        arr.unshift
     end
 
-    it "should drop a block" do 
-        arr3 = [
-        [2,3,4],
-        [],
-        [1] 
-        ]
-        expect(arr.move(0,2)).to eq(arr3)
-    end
+    # it "should grab a block" do
+    #     arr2 = [
+    #     [2,3,4],
+    #     [],
+    #     [] 
+    #     ]
+    #     expect(game.move).to eq(arr2)
+    # end
 
-    it "moves to a column that is on the board" do
-        expect{ arr.move(0,5) }.to raise_error("you're off the board")
-    end
+    # it "should drop a block" do 
+    #     arr3 = [
+    #     [2,3,4],
+    #     [],
+    #     [1] 
+    #     ]
+    #     expect(game.move).to eq(arr3)
+    # end
 
+    # it "moves to a column that is on the board" do
+    #     expect{ game.move }.to raise_error("you're off the board")
+    # end
 
 end
