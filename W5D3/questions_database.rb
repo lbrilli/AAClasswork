@@ -19,6 +19,11 @@ class User
         User.new(data.first)
     end
 
+    def self.find_by_name(fname, lname)
+        data = QuestionsDatabase.instance.execute("SELECT * FROM questions WHERE fname = #{fname} AND lname = #{lname}")
+        Question.new(data.first)
+    end
+
     def initialize(options)
         @id = options['id']
         @fname = options['fname']
@@ -31,6 +36,11 @@ class Question
     attr_accessor :id, :title, :body, :user_id
     def self.find_by_id(id)
         data = QuestionsDatabase.instance.execute("SELECT * FROM questions WHERE id = #{id}")
+        Question.new(data.first)
+    end
+
+    def self.find_by_author_id(author_id)
+        data = QuestionsDatabase.instance.execute("SELECT * FROM questions WHERE user_id = #{author_id}")
         Question.new(data.first)
     end
     
@@ -61,6 +71,16 @@ class Reply
     attr_accessor :id, :parent_reply_id, :users_id, :questions_id, :body
     def self.find_by_id(id)
         data = QuestionsDatabase.instance.execute("SELECT * FROM replies WHERE id = #{id}")
+        Reply.new(data.first)
+    end
+
+    def self.find_by_user_id(user_id)
+        data = QuestionsDatabase.instance.execute("SELECT * FROM replies WHERE users_id = #{user_id}")
+        Reply.new(data.first)
+    end
+
+    def self.find_by_question_id(question_id)
+        data = QuestionsDatabase.instance.execute("SELECT * FROM replies WHERE questions_id = #{question_id}")
         Reply.new(data.first)
     end
 
