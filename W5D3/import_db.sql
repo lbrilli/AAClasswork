@@ -54,6 +54,23 @@ VALUES
 INSERT INTO
     questions (title, body, user_id)
 VALUES
-    ('Why does Mike have a whiteboard?', 'Seriously, why doesn''t Mike ever use his whiteboard?', (SELECT id FROM users WHERE lname = 'Brilli'))
-    ('Why is the sky blue?', 'Seriously, why is the sky blue?', (SELECT id FROM users WHERE lname = 'Rittwage'))
+    ('Why does Mike have a whiteboard?', 'Seriously, why doesn''t Mike ever use his whiteboard?', 1),
+    ('Why is the sky blue?', 'Seriously, why is the sky blue?', 2);
     
+INSERT INTO
+    questions_follows (users_id, questions_id)
+VALUES
+    (2,(SELECT id FROM questions WHERE title = 'Why does Mike have a whiteboard?')),
+    (1, (SELECT id FROM questions WHERE title = 'Why is the sky blue?'));
+
+INSERT INTO
+    replies (questions_id, users_id, parent_reply_id, body)
+VALUES
+    (1, 2, NULL, 'Mike has it to stay organized'),
+    (2, 1, NULL, 'because it is');
+
+INSERT INTO
+    question_likes (questions_id, users_id)
+VALUES
+    (1, 2),
+    (2, 1);
