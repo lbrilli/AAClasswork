@@ -116,7 +116,21 @@ class Reply
     def question
         Question.find_by_id(@questions_id)
     end
+
+    def parent_reply
+        if @parent_reply_id == 'NULL'
+            return "parent is NULL / top level reply"
+        else
+            find_by_id(@parent_reply_id)
+        end
+    end
     
+    def child_replies
+        # do SQL query that grabs all replies with the parent id of the current object
+        # take that and turn into an array of reply objects
+        data = QuestionsDatabase.instance.execute("SELECT * FROM replies WHERE parent_reply_id = #{id}")
+        data.map { |datum| Reply.new(datum) }
+    end
 end
 
 class QuestionLike
