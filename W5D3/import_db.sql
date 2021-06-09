@@ -1,3 +1,5 @@
+PRAGMA foreign_keys = ON;
+
 CREATE TABLE users (
     id INTEGER PRIMARY KEY,
     fname TEXT NOT NULL,
@@ -32,4 +34,26 @@ CREATE TABLE replies (
     FOREIGN KEY(questions_id) REFERENCES questions(id),
     FOREIGN KEY(parent_reply_id) REFERENCES replies(id),
     FOREIGN KEY(users_id) REFERENCES users(id)
-)
+);
+
+CREATE TABLE question_likes (
+    id INTEGER PRIMARY KEY,
+    questions_id INTEGER NOT NULL,
+    users_id INTEGER NOT NULL,
+
+    FOREIGN KEY(questions_id) REFERENCES questions(id),
+    FOREIGN KEY(users_id) REFERENCES users(id)
+);
+
+INSERT INTO
+    users (fname, lname)
+VALUES
+    ('Luca','Brilli'),
+    ('Will','Rittwage');
+
+INSERT INTO
+    questions (title, body, user_id)
+VALUES
+    ('Why does Mike have a whiteboard?', 'Seriously, why doesn''t Mike ever use his whiteboard?', (SELECT id FROM users WHERE lname = 'Brilli'))
+    ('Why is the sky blue?', 'Seriously, why is the sky blue?', (SELECT id FROM users WHERE lname = 'Rittwage'))
+    
