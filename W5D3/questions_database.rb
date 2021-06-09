@@ -30,6 +30,15 @@ class User
         @lname = options ['lname']
     end
 
+    def authored_questions
+        author_id = Question.user_id
+        Question.find_by_author_id(author_id)
+    end
+    
+    def authored_replies
+        user_id = Reply.users_id
+        Reply.find_by_user_id(user_id)
+    end
 end
 
 class Question
@@ -41,7 +50,7 @@ class Question
 
     def self.find_by_author_id(author_id)
         data = QuestionsDatabase.instance.execute("SELECT * FROM questions WHERE user_id = #{author_id}")
-        Question.new(data.first)
+        data.map { |datum| Question.new(datum) }
     end
     
     def initialize(options)
@@ -76,7 +85,7 @@ class Reply
 
     def self.find_by_user_id(user_id)
         data = QuestionsDatabase.instance.execute("SELECT * FROM replies WHERE users_id = #{user_id}")
-        Reply.new(data.first)
+        data.map { |datum| Reply.new(datum) }
     end
 
     def self.find_by_question_id(question_id)
