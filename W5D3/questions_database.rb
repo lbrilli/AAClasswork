@@ -70,6 +70,10 @@ end
 
 class QuestionFollow
     attr_accessor :id, :users_id, :questions_id
+    def self.followers_for_question_id(question_id)
+        data = QuestionsDatabase.instance.execute("SELECT * FROM users WHERE id = #{id}")
+    end
+
     def self.find_by_id(id)
         data = QuestionsDatabase.instance.execute("SELECT * FROM questions_follows WHERE id = #{id}")
         QuestionFollow.new(data.first)
