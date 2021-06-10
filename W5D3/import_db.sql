@@ -67,6 +67,7 @@ INSERT INTO
     replies (questions_id, users_id, parent_reply_id, body)
 VALUES
     (1, 2, NULL, 'Mike has it to stay organized'),
+    (1, 1, 1, 'That makes sense'),
     (2, 1, NULL, 'because it is');
 
 INSERT INTO

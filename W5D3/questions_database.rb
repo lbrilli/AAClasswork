@@ -31,13 +31,11 @@ class User
     end
 
     def authored_questions
-        author_id = Question.user_id
-        Question.find_by_author_id(author_id)
+        Question.find_by_author_id(id)
     end
     
     def authored_replies
-        user_id = Reply.users_id
-        Reply.find_by_user_id(user_id)
+        Reply.find_by_user_id(id)
     end
 end
 
@@ -118,10 +116,10 @@ class Reply
     end
 
     def parent_reply
-        if @parent_reply_id == 'NULL'
+        if @parent_reply_id == nil
             return "parent is NULL / top level reply"
         else
-            find_by_id(@parent_reply_id)
+            Reply.find_by_id(@parent_reply_id)
         end
     end
     
