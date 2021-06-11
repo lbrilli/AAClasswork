@@ -1,3 +1,26 @@
+# == Schema Information
+#
+# Table name: actors
+#
+#  id          :integer      not null, primary key
+#  name        :string
+#
+# Table name: movies
+#
+#  id          :integer      not null, primary key
+#  title       :string
+#  yr          :integer
+#  score       :float
+#  votes       :integer
+#  director_id :integer
+#
+# Table name: castings
+#
+#  id          :integer      not null, primary key
+#  movie_id    :integer      not null
+#  actor_id    :integer      not null
+#  ord         :integer
+
 def what_was_that_one_with(those_actors)
   # Find the movies starring all `those_actors` (an array of actor names).
   # Show each movie's title and id.
