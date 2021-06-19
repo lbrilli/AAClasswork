@@ -1,8 +1,4 @@
-<ul>
-    <%#= render 'cat', cat: @cat%>
-</ul>
-
-<table>
+<table style="width: 15%">
     <thead>
         <tr>
             <th colspan="2"> <%= @cat.name %> </th> 
@@ -10,8 +6,22 @@
     </thead>
     <tbody>
         <tr>
-            <td>The table body</td>
-            <td>with two columns</td>
+            <th>Attribute</th>
+            <th>Value</th>
+        </tr>
+        <tr>
+            <td>Birth Date</td>
+            <td><%= @cat.birth_date %></td>
+        </tr>
+        <tr>
+            <td>Color</td>
+            <td><%= @cat.color%></td>
+        </tr>
+        <tr>
+            <td>Sex</td>
+            <td><%= @cat.sex %></td>
         </tr>
     </tbody>
 </table>
+
+<a href="<%= cats_url %>">Back to the index!</a>

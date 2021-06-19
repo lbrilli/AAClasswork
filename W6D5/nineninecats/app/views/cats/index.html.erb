@@ -3,8 +3,8 @@
 <ul>
     <%@cats.each do |cat| %>
     <ul>
-        <%= render 'cat', cat: cat %>
-    <br/>
+        <a href="<% cat_url(cat.id) %>"> <%=cat.name %></a>
+        <br/>
     </ul>
     <% end %>
 </ul>
