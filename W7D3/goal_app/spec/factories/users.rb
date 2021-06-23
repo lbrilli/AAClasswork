@@ -11,6 +11,7 @@
 #
 FactoryBot.define do
   factory :user do
-    
+    username {Faker::TvShows::RickAndMorty.character}
+    password {'hunter12'}
   end
 end

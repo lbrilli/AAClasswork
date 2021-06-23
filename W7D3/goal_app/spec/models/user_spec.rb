@@ -12,7 +12,9 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  subject(:user) {User.new(username: "aaTester", password: "hunter12")}
+  subject(:user) do 
+    FactoryBot.create(:user)
+  end
 
   #SPIRE
   #self.find_by
@@ -32,9 +34,10 @@ RSpec.describe User, type: :model do
   it {should have_many(:comments)}
 
   describe "::find_by_credential" do
-    before {user.save}
+    # before {user.save}
+    user = FactoryBot.create(:user, username: "aaTester")
       it "returns a user if credentials match" do
-        expect(User.find_by_credential("aaTester","hunter12")).to eq(user)
+        expect(User.find_by_credential('aaTester','hunter12')).to eq(user)
       end
 
       it "returns nil if no match is found" do
@@ -47,17 +50,17 @@ RSpec.describe User, type: :model do
   end
 
   describe 'is_password' do
-    let!(:user) {build(:user)}
+    # let!(:user) {create(:user)}
 
     context "with a valid password" do
       it "should return true" do
-        expect (user.is_password("hunter12")).to be true
+        expect(user.is_password("hunter12")).to be true
       end
     end
 
     context "with an invalid password" do
       it "should return false" do
-        expect (user.is_password("banana")).to be false
+        expect(user.is_password("banana")).to be false
       end
     end
   end
