@@ -1,0 +1,10 @@
+<h2><%=@user[:email]%> successfully logged in</h2> 
+
+<form action="<%=session_url%>" method="post">
+<input type= "hidden" name="_method" value="delete">
+
+<input type="hidden" name="authenticity_token" value="form_authenticity_token">
+
+<input type="submit" value="Log Out">
+
+</form>
