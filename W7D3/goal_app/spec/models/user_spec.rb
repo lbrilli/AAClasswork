@@ -2,6 +2,13 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   # subject(:user) {User.new(username: "aaTester", password: "hunter12")}
+
+  #SPIRE
+  #self.find_by
+  #password=
+  #is_password
+  #reset token
+  #ensure token
   
   it {should validate_presence_of(:username)}
   it {should validate_presence_of(:password_digest)}
@@ -12,6 +19,21 @@ RSpec.describe User, type: :model do
 
   it {should have_many(:goals)}
   it {should have_many(:comments)}
+
+  describe "::find_by_credential" do
+    before {user.save}
+      it "returns a user if credentials match" do
+        expect(User.find_by_credential("aaTester","hunter12")).to eq(user)
+      end
+
+      it "returns nil if no match is found" do
+        expect(User.find_by_credential("aaTester","1234567")).to eq(nil)
+      end
+    end
+
+  it "creates a password digest" do
+    expect(user.password_digest).to_not be_nil
+  end
 
   describe 'is_password' do
     let!(:user) {build(:user)}
@@ -29,14 +51,19 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe "::find_by_credential" do
-    before {user.save}
-    it "returns a user if credentials match" do
-      expect(User.find_by_credential("aaTester","hunter12")).to eq(user)
+  describe "session token" do
+    it "assigns a session token" do
+      expect(user.session_token).not_to be_nil
     end
 
-    it "returns nil if no match is found" do
-      expect(User.find_by_credential("aaTester","1234567")).to eq(nil)
+    it "resets session token on a user" do
+      old_token = user.session_token
+      new_token = user.reset_session_token!
+
+      expect(old_token).to_not eq(new_token)
     end
+
   end
+
+
 end
