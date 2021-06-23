@@ -1,7 +1,18 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :bigint           not null, primary key
+#  username        :string           not null
+#  password_digest :string           not null
+#  session_token   :string           not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  # subject(:user) {User.new(username: "aaTester", password: "hunter12")}
+  subject(:user) {User.new(username: "aaTester", password: "hunter12")}
 
   #SPIRE
   #self.find_by
