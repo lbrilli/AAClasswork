@@ -1,0 +1,52 @@
+.main-nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0px;
+  background-color: turquoise;
+}
+
+.left-nav > ul,
+.right-nav > ul {
+  display: flex;
+  align-items: center;
+}
+
+.left-nav {
+
+  > ul {
+    > li {
+      margin: 10px;
+    }
+  }
+
+  span {
+    font-family: $sans-serif;
+    font-weight: bold;
+    font-size: 10px;
+    text-transform: uppercase;
+  }
+}
+
+.right-nav  {
+
+  > ul {
+
+    > li {
+      margin: 4px;
+    }
+
+    > li:last-of-type {
+      font-size: 14px;
+      margin-right: 8px;
+    }
+  }
+  
+  i {
+
+  }
+}
+
+.left-nav > ul > li:hover,
+.right-nav > ul > li:last-of-type:hover {
+
+}
