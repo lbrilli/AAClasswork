@@ -1,0 +1,17 @@
+<h1>Create Sub</h1>
+
+<form action="<%= subs_url %>" method="POST">
+  <%= auth_token %>
+  <%= flash[:errors] %>
+  <br>
+
+  <label for="sub_title">Title: </label>
+  <input type="text" name="sub[title]" id="sub_title">
+  <br>
+
+  <label for="sub_description">Description: </label>
+  <input type="text" name="sub[description]" id="sub_description">
+  <br>
+
+  <input type="submit" value="Create Sub">
+</form>
