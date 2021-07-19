@@ -5,6 +5,8 @@ class Board extends React.Component {
     constructor(props) {
         console.log(props);
         super(props)
+        this.renderRows = this.renderRows.bind(this);
+        this.renderTiles = this.renderTiles.bind(this);
     }
 
     render () {
