@@ -23,7 +23,7 @@ class Tile extends React.Component {
         } else {
             if (tile.explored) {
                 klass = "explored";
-                if (!tile.bombed) {
+                if (tile.bombed) {
                     klass = "bombed"
                     text = '💣'
                 } else if(tile.adjacentBombCount()) {
