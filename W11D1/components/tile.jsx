@@ -3,6 +3,7 @@ import React from 'react';
 class Tile extends React.Component {
     constructor(props) {
         super(props);
+        this.handleClick = this.handleClick.bind(this);
     }
 
     // check if flagged
@@ -22,7 +23,7 @@ class Tile extends React.Component {
         } else {
             if (tile.explored) {
                 klass = "explored";
-                if (tile.bombed) {
+                if (!tile.bombed) {
                     klass = "bombed"
                     text = '💣'
                 } else if(tile.adjacentBombCount()) {
@@ -32,10 +33,18 @@ class Tile extends React.Component {
         }
         // console.log(klass)
         // console.log(text)
+        
         return (
-            <div className="tile" {...klass}>{text}</div>
+            <div className={`tile ${klass}`} onClick={this.handleClick}>{text}</div>
         )
     }
+    
+    handleClick(e) {
+        // console.dir(e);
+        this.props.updateGame(this.props.tile, e.altKey)
+    }
+
+    
 }
 
 export default Tile;
